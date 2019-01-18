@@ -1,20 +1,12 @@
 package com.qad.restfulwebservice;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@Getter
+@ToString
 public class HelloBean {
     private final String msg;
-
-    public HelloBean(String msg) {
-        this.msg = msg;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    @Override
-    public String toString() {
-        return "HelloBean{" +
-                "msg='" + msg + '\'' +
-                '}';
-    }
 }
