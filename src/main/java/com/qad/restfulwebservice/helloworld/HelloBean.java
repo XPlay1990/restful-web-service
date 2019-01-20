@@ -1,4 +1,4 @@
-package com.qad.restfulwebservice;
+package com.qad.restfulwebservice.helloworld;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
