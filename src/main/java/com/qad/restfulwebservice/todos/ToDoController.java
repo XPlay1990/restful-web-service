@@ -26,4 +26,13 @@ public class ToDoController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PutMapping("/users/{username}/todos/{id}")
+    public void updateTodo(){
+
+    }
+
+    @PostMapping("/users/{username}/todos/{id}")
+    public void createNewTodo(){
+    }
 }
