@@ -18,6 +18,11 @@ public class ToDoController {
         return todoDummyList.returnAllDummys();
     }
 
+    @GetMapping("/users/{username}/todos/{id}")
+    public ToDo getTodo(@PathVariable String username, @PathVariable long id) {
+        return todoDummyList.getTodoById(id);
+    }
+
     @DeleteMapping("/users/{username}/todos/{id}")
     public ResponseEntity<Void> deleteTodos(@PathVariable String username, @PathVariable long id) {
         ToDo toDo = todoDummyList.deleteById(id);

@@ -36,7 +36,7 @@ public class TodoDummyList {
         return null;
     }
 
-    private ToDo getTodoById(long id) {
+    public ToDo getTodoById(long id) {
         for (ToDo todo : todos) {
             if (todo.getId() == id) {
                 return todo;
