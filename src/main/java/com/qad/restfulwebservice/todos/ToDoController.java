@@ -1,9 +1,12 @@
 package com.qad.restfulwebservice.todos;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -33,12 +36,19 @@ public class ToDoController {
     }
 
     @PutMapping("/users/{username}/todos/{id}")
-    public void updateTodo(){
+    public ResponseEntity<ToDo> updateTodo(@PathVariable String username, @PathVariable long id, @RequestBody ToDo todo) {
+        ToDo newTodo = todoDummyList.saveOrUpdate(todo);
 
+        return new ResponseEntity<ToDo>(newTodo, HttpStatus.OK);
     }
 
-    @PostMapping("/users/{username}/todos/{id}")
-    public void createNewTodo(){
+    @PostMapping("/users/{username}/todos")
+    public ResponseEntity<Void> createNewTodo(@PathVariable String username, @RequestBody ToDo todo) {
+        ToDo todoCreated = todoDummyList.saveOrUpdate(todo);
 
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(todoCreated.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
+
 }
