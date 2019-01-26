@@ -1,0 +1,19 @@
+server:
+  port: 9020
+management:
+  server:
+    port: 9021
+    endpoint:
+      shutdown:
+        enabled: true
+spring:
+  application:
+    name: AngularApp
+  security:
+    user:
+      name: Jan
+      password:
+logging:
+  level:
+    root:
+      #debug
