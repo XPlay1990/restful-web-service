@@ -1,4 +1,4 @@
-package com.qad.restfulwebservice.basicAuth;
+package com.qad.basicAuth;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

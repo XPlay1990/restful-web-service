@@ -1,4 +1,4 @@
-package com.qad.restfulwebservice.basicAuth;
+package com.qad.basicAuth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

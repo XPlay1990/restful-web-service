@@ -1,4 +1,4 @@
-package com.qad.restfulwebservice.basicAuth;
+package com.qad.basicAuth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
