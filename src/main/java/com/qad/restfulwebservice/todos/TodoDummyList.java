@@ -8,23 +8,23 @@ import java.util.List;
 
 @Service
 public class TodoDummyList {
-    private static List<ToDo> todos = new ArrayList();
-    private static int idCounter = 0;
+    private static List<Todo> todos = new ArrayList();
+    private static long idCounter = 0;
 
 
     static {
-        todos.add(new ToDo(++idCounter, "Jan", "Learn Spring-Boot", new Date(), false));
-        todos.add(new ToDo(++idCounter, "Jan", "Learn Angular", new Date(), false));
-        todos.add(new ToDo(++idCounter, "Jan", "Start Business", new Date(), false));
-        todos.add(new ToDo(++idCounter, "Jan", "Get Rich", new Date(), false));
+        todos.add(new Todo(++idCounter, "Jan", "Learn Spring-Boot", new Date(), false));
+        todos.add(new Todo(++idCounter, "Jan", "Learn Angular", new Date(), false));
+        todos.add(new Todo(++idCounter, "Jan", "Start Business", new Date(), false));
+        todos.add(new Todo(++idCounter, "Jan", "Get Rich", new Date(), false));
     }
 
-    public List<ToDo> returnAllDummys() {
+    public List<Todo> returnAllDummys() {
         return todos;
     }
 
-    public ToDo deleteById(long id) {
-        ToDo todo = getTodoById(id);
+    public Todo deleteById(long id) {
+        Todo todo = getTodoById(id);
 
         if (todo == null) {
             return null;
@@ -36,8 +36,8 @@ public class TodoDummyList {
         return null;
     }
 
-    public ToDo getTodoById(long id) {
-        for (ToDo todo : todos) {
+    public Todo getTodoById(long id) {
+        for (Todo todo : todos) {
             if (todo.getId() == id) {
                 return todo;
             }
@@ -45,7 +45,7 @@ public class TodoDummyList {
         return null;
     }
 
-    public ToDo saveOrUpdate(ToDo todo){
+    public Todo saveOrUpdate(Todo todo){
         if(todo.getId() == -1 || todo.getId() == 0){
             todo.setId(++idCounter);
             todos.add(todo);
