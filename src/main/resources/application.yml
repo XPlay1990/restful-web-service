@@ -2,10 +2,14 @@ server:
   port: 9020
 management:
   server:
-    port: 9021
+    port: 9020
     endpoint:
       shutdown:
         enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 spring:
   application:
     name: AngularApp
