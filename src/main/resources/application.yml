@@ -15,9 +15,15 @@ spring:
     name: AngularApp
   jpa:
     show-sql: true
-  h2:
-    console:
-      enabled: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_app?serverTimezone=UTC
+    username: Spring_APP
+    password: E0JqsNYj3FUN20g7AHYj
+#  h2:
+#    console:
+#      enabled: true
 #  security:
 #    user:
 #      name: Jan
