@@ -14,9 +14,6 @@ import java.util.List;
 public class TodoController {
 
     @Autowired
-    private TodoDummyList todoDummyList;
-
-    @Autowired
     private TodoRepository todoRepository;
 
     @GetMapping("/users/{username}/todos")
