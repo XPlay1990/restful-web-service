@@ -1,7 +1,6 @@
 package com.qad.restfulwebservice.jwt.Users;
 
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -20,13 +19,18 @@ public class JwtUser implements UserDetails {
     @Column(name = "id")
     private Long id;
 
+    @Column(unique = true)
     private String username;
     private String password;
+
+    @Column(unique = true)
     private String email;
     private String firstName;
     private String lastName;
+
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<UserRole> authorities;
+
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
