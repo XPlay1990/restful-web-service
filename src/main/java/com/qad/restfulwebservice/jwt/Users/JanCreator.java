@@ -22,7 +22,7 @@ public class JanCreator {
 
         UserRole admin = new UserRole();
         admin.setAuthority("admin");
-        ArrayList<UserRole> userRoles = new ArrayList<UserRole>();
+        ArrayList<UserRole> userRoles = new ArrayList<>();
         userRoles.add(admin);
         jan.setAuthorities(userRoles);
 
