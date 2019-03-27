@@ -1,4 +1,4 @@
-package com.qad.restfulwebservice.Swagger;
+package com.qad.restfulwebservice.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
