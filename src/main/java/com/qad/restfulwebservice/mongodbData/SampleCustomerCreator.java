@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class SampleCustomerCreator {
 
-    Logger logger = LoggerFactory.getLogger(SampleCustomerCreator.class);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-        @Autowired
-        private CustomerRepository customerRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
 
-        public void execute(){
-            customerRepository.deleteAll();
-            Customer jan = new Customer();
-            jan.setFirstName("Jan");
-            jan.setLastName("Adamczyk");
+    public void execute() {
+        customerRepository.deleteAll();
+        Customer jan = new Customer();
+        jan.setFirstName("Jan");
+        jan.setLastName("Adamczyk");
 
-            customerRepository.save(jan);
-        }
+        customerRepository.save(jan);
+    }
 }

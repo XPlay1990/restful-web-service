@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.qad.restfulwebservice.jwt.JwtTokenUtil;
 import com.qad.restfulwebservice.jwt.Users.JwtUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:4200")
 public class JwtAuthenticationRestController {
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
 	@Value("${jwt.http.request.header}")
 	private String tokenHeader;
 
@@ -43,12 +48,16 @@ public class JwtAuthenticationRestController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
 			throws AuthenticationException {
 
-		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+		String username = authenticationRequest.getUsername();
+
+		authenticate(username, authenticationRequest.getPassword());
 
 		final UserDetails userDetails = jwtInMemoryUserDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
+				.loadUserByUsername(username);
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
+
+		logger.info("User logged in: " + username);
 
 		return ResponseEntity.ok(new JwtTokenResponse(token));
 	}
@@ -68,7 +77,7 @@ public class JwtAuthenticationRestController {
 		}
 	}
 
-	@ExceptionHandler({ AuthenticationException.class })
+	@ExceptionHandler({AuthenticationException.class})
 	public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
 	}
