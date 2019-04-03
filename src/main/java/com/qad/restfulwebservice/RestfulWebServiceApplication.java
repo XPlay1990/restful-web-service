@@ -2,7 +2,6 @@ package com.qad.restfulwebservice;
 
 import com.qad.restfulwebservice.jwt.Users.JanCreator;
 import com.qad.restfulwebservice.mongodbData.SampleCustomerCreator;
-import javassist.tools.rmi.Sample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

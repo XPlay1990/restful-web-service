@@ -20,8 +20,9 @@ public class VersionController {
 		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("git.properties");
 		Properties gitProperties = readFromInputStream(resourceAsStream);
 		try {
+			assert resourceAsStream != null;
 			resourceAsStream.close();
-		} catch (IOException e) {
+		} catch (IOException ignored) {
 		}
 
 		String branch = gitProperties.getProperty("git.branch");
