@@ -18,7 +18,6 @@
         <connection>scm:git:git@github.com:XPlay1990/restful-web-service.git</connection>
         <developerConnection>scm:git:git@github.com:XPlay1990/restful-web-service.git</developerConnection>
         <url>scm:git:git@github.com:XPlay1990/restful-web-service.git</url>
-        <tag>HEAD</tag>
     </scm>
 
     <properties>
