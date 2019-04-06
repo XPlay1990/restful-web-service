@@ -19,7 +19,7 @@ spring:
       ddl-auto: create
     properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
-    url: jdbc:mysql://localhost:3306/spring_app?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/spring_app?serverTimezone=UTC&useSSL=false
     username: Spring_APP
     password: E0JqsNYj3FUN20g7AHYj]
 #  h2:
@@ -39,10 +39,10 @@ jwt:
       secret: mySecret
   get:
     token:
-      uri: /authenticate
+      uri: /authenticate  # jwt.get.token.uri
   refresh:
     token:
-      uri: /refresh
+      uri: /refresh       # jwt.refresh.token.uri
   http:
     request:
       header: Authorization
