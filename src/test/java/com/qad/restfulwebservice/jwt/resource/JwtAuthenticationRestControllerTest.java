@@ -49,23 +49,23 @@ public class JwtAuthenticationRestControllerTest {
 	@Test
 	public void createAuthenticationToken() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		Map<String, String> headerMap = Map.ofEntries(
-				entry("Host", "localhost:9020"),
-				entry("User-Agent", "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0"),
-				entry("Accept", "*/*"),
-				entry("Accept-Language", "en-US,en;q=0.5"),
-				entry("Accept-Encoding", "gzip, deflate"),
-				entry("Access-Control-Request-Method", "POST"),
-				entry("Access-Control-Request-Headers", "content-type"),
-				entry("Referer", "localhost:9020"),
-				entry("Origin", "http://localhost:9020"),
-				entry("Connection", "keep-alive"));
+//		Map<String, String> headerMap = Map.ofEntries(
+//				entry("Host", "localhost:9020"),
+//				entry("User-Agent", "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0"),
+//				entry("Accept", "*/*"),
+//				entry("Accept-Language", "en-US,en;q=0.5"),
+//				entry("Accept-Encoding", "gzip, deflate"),
+//				entry("Access-Control-Request-Method", "POST"),
+//				entry("Access-Control-Request-Headers", "content-type"),
+//				entry("Referer", "localhost:9020"),
+//				entry("Origin", "http://localhost:9020"),
+//				entry("Connection", "keep-alive"));
 
 		HttpHeaders httpHeaders = new HttpHeaders();
 
-		for (Map.Entry<String, String> stringStringEntry : headerMap.entrySet()) {
-			httpHeaders.add(stringStringEntry.getKey(), stringStringEntry.getValue());
-		}
+//		for (Map.Entry<String, String> stringStringEntry : headerMap.entrySet()) {
+//			httpHeaders.add(stringStringEntry.getKey(), stringStringEntry.getValue());
+//		}
 
 
 		//TODO: not working yet, should check if adminuser is present
