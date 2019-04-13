@@ -28,7 +28,7 @@ public class JWTWebSecurityConfigTest {
         for(int i=0; i<10;i++){
             String encodedString = encoder.encode("rawPassword1234!ä#");
             System.out.println(encodedString);
-            assertTrue(!encodedString.isEmpty());
+            assertFalse(encodedString.isEmpty());
         }
     }
 }

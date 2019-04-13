@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(JwtAuthenticationRestController.class)
 @ContextConfiguration(classes = {JwtUnAuthorizedResponseAuthenticationEntryPoint.class})
-public class JwtAuthenticationRestControllerTest {
+public class JwtAuthenticationRestControllerITTest {
 
 
 	@Autowired

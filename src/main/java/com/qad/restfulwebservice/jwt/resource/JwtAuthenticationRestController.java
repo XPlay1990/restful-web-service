@@ -1,11 +1,7 @@
 package com.qad.restfulwebservice.jwt.resource;
 
-import java.util.Objects;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.qad.restfulwebservice.jwt.JwtTokenUtil;
-import com.qad.restfulwebservice.jwt.Users.JwtUser;
+import com.qad.restfulwebservice.jwt.Users.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +13,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -42,7 +35,7 @@ public class JwtAuthenticationRestController {
 	private JwtTokenUtil jwtTokenUtil;
 
 	@Autowired
-	private UserDetailsService jwtInMemoryUserDetailsService;
+	private UserRepository userRepository;
 
 	@RequestMapping(value = "${jwt.get.token.uri}", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
@@ -52,8 +45,8 @@ public class JwtAuthenticationRestController {
 
 		authenticate(username, authenticationRequest.getPassword());
 
-		final UserDetails userDetails = jwtInMemoryUserDetailsService
-				.loadUserByUsername(username);
+		final UserDetails userDetails = userRepository
+				.findByUsername(username);
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
@@ -67,10 +60,13 @@ public class JwtAuthenticationRestController {
 		String authToken = request.getHeader(tokenHeader);
 		final String token = authToken.substring(7);
 		String username = jwtTokenUtil.getUsernameFromToken(token);
-		JwtUser user = (JwtUser) jwtInMemoryUserDetailsService.loadUserByUsername(username);
+//		JwtUser user = (JwtUser) userRepository.findByUsername(username);
 
 		if (jwtTokenUtil.canTokenBeRefreshed(token)) {
 			String refreshedToken = jwtTokenUtil.refreshToken(token);
+
+			logger.info("Token refreshed for User: " + username);
+
 			return ResponseEntity.ok(new JwtTokenResponse(refreshedToken));
 		} else {
 			return ResponseEntity.badRequest().body(null);
