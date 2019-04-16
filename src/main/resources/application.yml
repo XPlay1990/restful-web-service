@@ -16,12 +16,19 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate #create-drop
     properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
     url: jdbc:mysql://localhost:3306/spring_app?serverTimezone=UTC&useSSL=false
     username: Spring_APP
     password: E0JqsNYj3FUN20g7AHYj]
+    schema: spring_app
+  flyway:
+    locations: filesystem:db/migrate
+    url: jdbc:mysql://localhost:3306?serverTimezone=UTC&useSSL=false
+    user: Spring_APP
+    password: E0JqsNYj3FUN20g7AHYj]
+    schemas: spring_app
 #  h2:
 #    console:
 #      enabled: true
