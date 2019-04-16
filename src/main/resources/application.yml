@@ -22,9 +22,8 @@ spring:
     url: jdbc:mysql://localhost:3306/spring_app?serverTimezone=UTC&useSSL=false
     username: Spring_APP
     password: E0JqsNYj3FUN20g7AHYj]
-    schema: spring_app
   flyway:
-    locations: filesystem:db/migrate
+    locations: classpath:db/migration
     url: jdbc:mysql://localhost:3306?serverTimezone=UTC&useSSL=false
     user: Spring_APP
     password: E0JqsNYj3FUN20g7AHYj]

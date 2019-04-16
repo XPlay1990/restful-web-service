@@ -4,6 +4,8 @@ import com.qad.restfulwebservice.order.OrderRepository;
 import com.qad.restfulwebservice.order.model.ConfirmedOrderLine;
 import com.qad.restfulwebservice.order.model.OrderLine;
 import com.qad.restfulwebservice.order.model.Orders;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.List;
 
 @Service
 public class JanCreator {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -22,26 +26,26 @@ public class JanCreator {
 	private OrderRepository orderRepository;
 
 	public void execute() {
-		JwtUser jan = new JwtUser();
-		jan.setEmail("j_adamczyk@hotmail.com");
-		jan.setFirstName("Jan");
-		jan.setLastName("Adamczyk");
-		jan.setUsername("XPlay");
-		jan.setPassword("$2a$10$cJTYjQ5wj.w8cGiYxqEy6.j4rLBJ5Lprdx7Iz2QGxZbfQxPhsAgRS");
-		jan.activateUser();
-
-
-		UserRole admin = new UserRole();
-		admin.setAuthority("admin");
-		ArrayList<UserRole> userRoles = new ArrayList<>();
-		userRoles.add(admin);
-		jan.setAuthorities(userRoles);
-
-		if (userRepository == null) {
-			System.out.println("WTF ITS NULL");
-		}
-
-		userRepository.save(jan);
+//		JwtUser jan = new JwtUser();
+//		jan.setEmail("j_adamczyk@hotmail.com");
+//		jan.setFirstName("Jan");
+//		jan.setLastName("Adamczyk");
+//		jan.setUsername("XPlay");
+//		jan.setPassword("$2a$10$cJTYjQ5wj.w8cGiYxqEy6.j4rLBJ5Lprdx7Iz2QGxZbfQxPhsAgRS");
+//		jan.activateUser();
+//
+//
+//		UserRole admin = new UserRole();
+//		admin.setAuthority("admin");
+//		ArrayList<UserRole> userRoles = new ArrayList<>();
+//		userRoles.add(admin);
+//		jan.setAuthorities(userRoles);
+//
+//		if (userRepository == null) {
+//			System.out.println("WTF ITS NULL");
+//		}
+//
+//		userRepository.save(jan);
 
 
 		Date currentDate = new Date();
@@ -61,8 +65,14 @@ public class JanCreator {
 		Orders orders = Orders.builder().article("Pommes").destination("Deutschland")
 				.confirmedOrderLineList(confirmedOrderLines).orderLineList(orderLines)
 				.build();
+		orderLine.setOrders(orders);
+		confirmedOrderLine.setOrders(orders);
 		orderRepository.save(orders);
 		List<Orders> pommes = orderRepository.findByArticle("Pommes");
-		orderRepository.delete(pommes.get(0));
+		Orders orders1 = pommes.get(0);
+		logger.info("pommes fetched successful");
+		logger.info(String.valueOf(orders1.getConfirmedOrderLineList().get(0).getQuantity()));
+
+//		orderRepository.delete(pommes.get(0));
 	}
 }
