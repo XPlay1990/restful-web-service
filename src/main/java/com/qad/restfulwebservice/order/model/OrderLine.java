@@ -23,7 +23,7 @@ public class OrderLine {
 	private int quantity;
 	private Date targetDate;
 
-//	@ManyToOne
-//	@JoinColumn(name = "orders_id", nullable = false)
-//	private Orders orders;
+	@ManyToOne
+	@JoinColumn(name = "orders_id", nullable = false)
+	private Orders orders;
 }

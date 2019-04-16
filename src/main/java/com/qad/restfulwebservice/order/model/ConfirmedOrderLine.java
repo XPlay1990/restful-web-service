@@ -23,7 +23,7 @@ public class ConfirmedOrderLine {
 	private int quantity;
 	private Date confirmedTargetDate;
 
-//	@ManyToOne
-//	@JoinColumn(name = "orders_id", nullable = false)
-//	private Orders orders;
+	@ManyToOne
+	@JoinColumn(name = "orders_id", nullable = false)
+	private Orders orders;
 }
